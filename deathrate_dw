@@ -1,0 +1,46 @@
+CREATE TABLE DimIndicator (
+    IndicatorID INT PRIMARY KEY AUTO_INCREMENT,
+    IndicatorName VARCHAR(255)
+);
+
+CREATE TABLE DimUnit (
+    UnitID INT PRIMARY KEY AUTO_INCREMENT,
+    UnitName VARCHAR(255),
+    UnitNum INT
+);
+ALTER TABLE DimUnit
+ADD UNIQUE (UnitName);
+
+CREATE TABLE DimStubName (
+    StubNameID INT PRIMARY KEY AUTO_INCREMENT,
+    StubName VARCHAR(255),
+    StubNameNum INT
+);
+
+CREATE TABLE DimAge (
+    AgeID INT PRIMARY KEY AUTO_INCREMENT,
+    AgeGroup VARCHAR(255),
+    AgeNum FLOAT
+);
+ALTER TABLE DimAge
+ADD UNIQUE (AgeGroup);
+
+CREATE TABLE FactEstimates (
+    EstimateID INT PRIMARY KEY AUTO_INCREMENT,
+    IndicatorID INT,
+    UnitID INT,
+    StubNameID INT,
+    AgeID INT,
+    Year INT,
+    Estimate FLOAT,
+    Flag VARCHAR(255)
+);
+ALTER TABLE FactEstimates
+ADD CONSTRAINT FK_Indicator
+FOREIGN KEY (IndicatorID) REFERENCES DimIndicator(IndicatorID),
+ADD CONSTRAINT FK_Unit
+FOREIGN KEY (UnitID) REFERENCES DimUnit(UnitID),
+ADD CONSTRAINT FK_StubName
+FOREIGN KEY (StubNameID) REFERENCES DimStubName(StubNameID),
+ADD CONSTRAINT FK_Age
+FOREIGN KEY (AgeID) REFERENCES DimAge(AgeID);
