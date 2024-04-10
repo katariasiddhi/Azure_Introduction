@@ -35,6 +35,7 @@ CREATE TABLE FactEstimates (
     Estimate FLOAT,
     Flag VARCHAR(255)
 );
+-- Altering FactEstimates to add foreign keys, as they can also be added at the time of table creation
 ALTER TABLE FactEstimates
 ADD CONSTRAINT FK_Indicator
 FOREIGN KEY (IndicatorID) REFERENCES DimIndicator(IndicatorID),
