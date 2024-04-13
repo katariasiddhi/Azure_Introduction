@@ -1,47 +1,75 @@
-CREATE TABLE DimIndicator (
-    IndicatorID INT PRIMARY KEY AUTO_INCREMENT,
-    IndicatorName VARCHAR(255)
-);
+CREATE SCHEMA INSTANCE;
 
-CREATE TABLE DimUnit (
-    UnitID INT PRIMARY KEY AUTO_INCREMENT,
-    UnitName VARCHAR(255),
-    UnitNum INT
-);
-ALTER TABLE DimUnit
-ADD UNIQUE (UnitName);
+CREATE TABLE Suicide_rate.INSTANCE.Age ( 
+	Age_ID int64 NOT NULL  ,
+	Age_Category int64  ,
+	Birth_Year int64  ,
+	Birth_Month int64  ,
+	Birth_Date int64  ,
+	Estimate_ID int64 NOT NULL  
+ );
 
-CREATE TABLE DimStubName (
-    StubNameID INT PRIMARY KEY AUTO_INCREMENT,
-    StubName VARCHAR(255),
-    StubNameNum INT
-);
+ALTER TABLE Suicide_rate.INSTANCE.Age ADD PRIMARY KEY ( Age_ID, Estimate_ID )  NOT ENFORCED;
 
-CREATE TABLE DimAge (
-    AgeID INT PRIMARY KEY AUTO_INCREMENT,
-    AgeGroup VARCHAR(255),
-    AgeNum FLOAT
-);
-ALTER TABLE DimAge
-ADD UNIQUE (AgeGroup);
+CREATE TABLE Suicide_rate.INSTANCE.Estimate_Fact ( 
+	Estimate_ID int64 NOT NULL  ,
+	Age_ID int64 NOT NULL  ,
+	Estimate_ID_001 int64 NOT NULL  ,
+	Year_ID int64 NOT NULL  ,
+	Estimate_ID_002 int64 NOT NULL  ,
+	Indicator_ID int64 NOT NULL  ,
+	Estimate_ID_003 int64 NOT NULL  ,
+	Estimate_ID_004 int64 NOT NULL  ,
+	Age_ID_001 int64 NOT NULL  ,
+	Estimate_ID_005 int64 NOT NULL  ,
+	Year_ID_001 int64 NOT NULL  ,
+	Estimate_ID_006 int64 NOT NULL  ,
+	Stud_ID int64 NOT NULL  ,
+	Estimate_ID_007 int64 NOT NULL  ,
+	Unit_ID int64 NOT NULL  ,
+	Estimate_ID_008 int64 NOT NULL  
+ );
 
-CREATE TABLE FactEstimates (
-    EstimateID INT PRIMARY KEY AUTO_INCREMENT,
-    IndicatorID INT,
-    UnitID INT,
-    StubNameID INT,
-    AgeID INT,
-    Year INT,
-    Estimate FLOAT,
-    Flag VARCHAR(255)
-);
--- Altering FactEstimates to add foreign keys, as they can also be added at the time of table creation
-ALTER TABLE FactEstimates
-ADD CONSTRAINT FK_Indicator
-FOREIGN KEY (IndicatorID) REFERENCES DimIndicator(IndicatorID),
-ADD CONSTRAINT FK_Unit
-FOREIGN KEY (UnitID) REFERENCES DimUnit(UnitID),
-ADD CONSTRAINT FK_StubName
-FOREIGN KEY (StubNameID) REFERENCES DimStubName(StubNameID),
-ADD CONSTRAINT FK_Age
-FOREIGN KEY (AgeID) REFERENCES DimAge(AgeID);
+ALTER TABLE Suicide_rate.INSTANCE.Estimate_Fact ADD PRIMARY KEY ( Estimate_ID, Age_ID, Estimate_ID_001, Year_ID, Estimate_ID_002, Indicator_ID, Estimate_ID_003, Estimate_ID_004, Age_ID_001, Estimate_ID_005, Year_ID_001, Estimate_ID_006, Stud_ID, Estimate_ID_007, Unit_ID, Estimate_ID_008 )  NOT ENFORCED;
+
+CREATE TABLE Suicide_rate.INSTANCE.Indicator ( 
+	Indicator_ID int64 NOT NULL  ,
+	Indicator_Name float  ,
+	Estimate_ID int64 NOT NULL  ,
+	Estimate_ID_001 int64 NOT NULL  ,
+	Age_ID int64 NOT NULL  ,
+	Estimate_ID_002 int64 NOT NULL  ,
+	Year_ID int64 NOT NULL  ,
+	Estimate_ID_003 int64 NOT NULL  
+ );
+
+ALTER TABLE Suicide_rate.INSTANCE.Indicator ADD PRIMARY KEY ( Indicator_ID, Estimate_ID, Estimate_ID_001, Age_ID, Estimate_ID_002, Year_ID, Estimate_ID_003 )  NOT ENFORCED;
+
+CREATE TABLE Suicide_rate.INSTANCE.Stub_Dimension ( 
+	Stud_ID int64 NOT NULL  ,
+	Stub_Name float  ,
+	Stub_Name_Number int64  ,
+	Stub_Label float  ,
+	Stub_Label_Number int64  ,
+	Estimate_ID int64 NOT NULL  
+ );
+
+ALTER TABLE Suicide_rate.INSTANCE.Stub_Dimension ADD PRIMARY KEY ( Stud_ID, Estimate_ID )  NOT ENFORCED;
+
+CREATE TABLE Suicide_rate.INSTANCE.Unit ( 
+	Unit_ID int64 NOT NULL  ,
+	Unit_Description float  ,
+	Estimate_ID int64 NOT NULL  
+ );
+
+ALTER TABLE Suicide_rate.INSTANCE.Unit ADD PRIMARY KEY ( Unit_ID, Estimate_ID )  NOT ENFORCED;
+
+CREATE TABLE Suicide_rate.INSTANCE.Year ( 
+	Year_ID int64 NOT NULL  ,
+	Year_Number int64  ,
+	Estimate_ID int64 NOT NULL  ,
+	Month int64  ,
+	Day date  
+ );
+
+ALTER TABLE Suicide_rate.INSTANCE.Year ADD PRIMARY KEY ( Year_ID, Estimate_ID )  NOT ENFORCED;
