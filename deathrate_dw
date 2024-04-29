@@ -1,6 +1,6 @@
-CREATE SCHEMA INSTANCE;
+CREATE SCHEMA deathrate;
 
-CREATE TABLE Suicide_rate.INSTANCE.Age ( 
+CREATE TABLE Suicide_rate.deathrate.Age ( 
 	Age_ID int64 NOT NULL  ,
 	Age_Category int64  ,
 	Birth_Year int64  ,
@@ -9,9 +9,9 @@ CREATE TABLE Suicide_rate.INSTANCE.Age (
 	Estimate_ID int64 NOT NULL  
  );
 
-ALTER TABLE Suicide_rate.INSTANCE.Age ADD PRIMARY KEY ( Age_ID, Estimate_ID )  NOT ENFORCED;
+ALTER TABLE Suicide_rate.deathrates.Age ADD PRIMARY KEY ( Age_ID, Estimate_ID )  NOT ENFORCED;
 
-CREATE TABLE Suicide_rate.INSTANCE.Estimate_Fact ( 
+CREATE TABLE Suicide_rate.deathrates.Estimate_Fact ( 
 	Estimate_ID int64 NOT NULL  ,
 	Age_ID int64 NOT NULL  ,
 	Estimate_ID_001 int64 NOT NULL  ,
@@ -30,9 +30,9 @@ CREATE TABLE Suicide_rate.INSTANCE.Estimate_Fact (
 	Estimate_ID_008 int64 NOT NULL  
  );
 
-ALTER TABLE Suicide_rate.INSTANCE.Estimate_Fact ADD PRIMARY KEY ( Estimate_ID, Age_ID, Estimate_ID_001, Year_ID, Estimate_ID_002, Indicator_ID, Estimate_ID_003, Estimate_ID_004, Age_ID_001, Estimate_ID_005, Year_ID_001, Estimate_ID_006, Stud_ID, Estimate_ID_007, Unit_ID, Estimate_ID_008 )  NOT ENFORCED;
+ALTER TABLE Suicide_rate.deathrates.Estimate_Fact ADD PRIMARY KEY ( Estimate_ID, Age_ID, Estimate_ID_001, Year_ID, Estimate_ID_002, Indicator_ID, Estimate_ID_003, Estimate_ID_004, Age_ID_001, Estimate_ID_005, Year_ID_001, Estimate_ID_006, Stud_ID, Estimate_ID_007, Unit_ID, Estimate_ID_008 )  NOT ENFORCED;
 
-CREATE TABLE Suicide_rate.INSTANCE.Indicator ( 
+CREATE TABLE Suicide_rate.deathrate.Indicator ( 
 	Indicator_ID int64 NOT NULL  ,
 	Indicator_Name float  ,
 	Estimate_ID int64 NOT NULL  ,
@@ -43,9 +43,9 @@ CREATE TABLE Suicide_rate.INSTANCE.Indicator (
 	Estimate_ID_003 int64 NOT NULL  
  );
 
-ALTER TABLE Suicide_rate.INSTANCE.Indicator ADD PRIMARY KEY ( Indicator_ID, Estimate_ID, Estimate_ID_001, Age_ID, Estimate_ID_002, Year_ID, Estimate_ID_003 )  NOT ENFORCED;
+ALTER TABLE Suicide_rate.deathrate.Indicator ADD PRIMARY KEY ( Indicator_ID, Estimate_ID, Estimate_ID_001, Age_ID, Estimate_ID_002, Year_ID, Estimate_ID_003 )  NOT ENFORCED;
 
-CREATE TABLE Suicide_rate.INSTANCE.Stub_Dimension ( 
+CREATE TABLE Suicide_rate.deathrate.Stub_Dimension ( 
 	Stud_ID int64 NOT NULL  ,
 	Stub_Name float  ,
 	Stub_Name_Number int64  ,
@@ -54,17 +54,17 @@ CREATE TABLE Suicide_rate.INSTANCE.Stub_Dimension (
 	Estimate_ID int64 NOT NULL  
  );
 
-ALTER TABLE Suicide_rate.INSTANCE.Stub_Dimension ADD PRIMARY KEY ( Stud_ID, Estimate_ID )  NOT ENFORCED;
+ALTER TABLE Suicide_rate.deathrate.Stub_Dimension ADD PRIMARY KEY ( Stud_ID, Estimate_ID )  NOT ENFORCED;
 
-CREATE TABLE Suicide_rate.INSTANCE.Unit ( 
+CREATE TABLE Suicide_rate.deathrate.Unit ( 
 	Unit_ID int64 NOT NULL  ,
 	Unit_Description float  ,
 	Estimate_ID int64 NOT NULL  
  );
 
-ALTER TABLE Suicide_rate.INSTANCE.Unit ADD PRIMARY KEY ( Unit_ID, Estimate_ID )  NOT ENFORCED;
+ALTER TABLE Suicide_rate.deathrate.Unit ADD PRIMARY KEY ( Unit_ID, Estimate_ID )  NOT ENFORCED;
 
-CREATE TABLE Suicide_rate.INSTANCE.Year ( 
+CREATE TABLE Suicide_rate.deathrate.Year ( 
 	Year_ID int64 NOT NULL  ,
 	Year_Number int64  ,
 	Estimate_ID int64 NOT NULL  ,
@@ -72,4 +72,4 @@ CREATE TABLE Suicide_rate.INSTANCE.Year (
 	Day date  
  );
 
-ALTER TABLE Suicide_rate.INSTANCE.Year ADD PRIMARY KEY ( Year_ID, Estimate_ID )  NOT ENFORCED;
+ALTER TABLE Suicide_rate.deathrate.Year ADD PRIMARY KEY ( Year_ID, Estimate_ID )  NOT ENFORCED;
